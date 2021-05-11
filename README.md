@@ -1,3 +1,6 @@
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=kpinkerton-varicent_sonarcloud-example&metric=coverage)](https://sonarcloud.io/dashboard?id=kpinkerton-varicent_sonarcloud-example)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kpinkerton-varicent_sonarcloud-example&metric=alert_status)](https://sonarcloud.io/dashboard?id=kpinkerton-varicent_sonarcloud-example)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

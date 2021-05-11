@@ -1,0 +1,41 @@
+name: SonarCloud
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
+
+jobs:
+  nodejs:
+    name: SonarCloud Upload
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set Node Version
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.5
+      - name: npm install
+        run: npm install
+        working-directory: ./
+      - name: npm build
+        run: npm build
+        working-directory: ./
+      - name: npm test
+        run: npm test
+        working-directory: ./
+      - name: npm coverage
+        run: npm test -- --coverage
+        working-directory: ./
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
